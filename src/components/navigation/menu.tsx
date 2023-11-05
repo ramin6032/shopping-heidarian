@@ -1,24 +1,11 @@
-"use client";
-import React, { useState } from "react";
-import {
-  AppstoreOutlined,
-  MailOutlined,
-  SettingOutlined,
-} from "@ant-design/icons";
-import type { MenuProps } from "antd";
-import { Menu } from "antd";
 import Image from "next/image";
 import logo from "src/assets/svg/logo.svg";
 
-const items: MenuProps["items"] = [
-  {
-    label: <Image src={logo} alt="logo" width={45} />,
-    key: "logo",
-    disabled: true,
-  },
+const items = [
   {
     label: "صفحه اصلی",
     key: "home",
+    hover: false,
   },
   {
     label: "دخترانه",
@@ -34,21 +21,23 @@ const items: MenuProps["items"] = [
   },
 ];
 
-const MenuBar: React.FC = () => {
-  const [current, setCurrent] = useState("home");
-
-  const onClick: MenuProps["onClick"] = (e) => {
-    console.log("click ", e);
-    setCurrent(e.key);
-  };
-
+const MenuBar: React.FC<any> = ({ setCurrent, current }) => {
   return (
-    <Menu
-      onClick={onClick}
-      selectedKeys={[current]}
-      mode="horizontal"
-      items={items}
-    />
+    <nav className="d-flex user-select-none border-bottom">
+      {items.map((menu: { key: string; label: string; hover?: boolean }) => (
+        <span
+          className="p-3"
+          key={menu?.key}
+          onMouseOver={() => setCurrent(menu?.key)}
+          style={{
+            fontWeight:
+              current === menu?.key && menu?.hover !== false ? "500" : "",
+          }}
+        >
+          {menu?.label}
+        </span>
+      ))}
+    </nav>
   );
 };
 

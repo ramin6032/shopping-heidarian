@@ -35,6 +35,7 @@ body {
   overflow-x: hidden;
   font-family: Vazirmatn, tahoma;
   font-feature-settings: "ss01";
+  font-weight: 300;
 }
 
 body {
@@ -49,4 +50,33 @@ a {
   html {
     color-scheme: dark;
   }
+}
+
+.p-1 {
+  padding: 1rem !important;
+}
+.cover {
+  object-position: center;
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+.coverContainer:hover .cover {
+  opacity: 0.8;
+}
+.coverContainer {
+  min-height: 100px;
+  overflow: hidden;
+  position: relative;
+  max-height: 170px;
+  cursor: pointer;
+}
+.subtitle {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 1rem;
+  margin: 0;
+  background: rgb(255, 255, 255, 0.6);
+  font-weight: 500;
 }

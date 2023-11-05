@@ -13,6 +13,7 @@ export default function App(params: type) {
       }}
     >
       <Navigation />
+      <p>salam</p>
     </ConfigProvider>
   );
 }
