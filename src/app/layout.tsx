@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.scss";
 import "../../node_modules/vazirmatn/Vazirmatn-font-face.css";
+import "swiper/css";
 
 export const metadata: Metadata = {
   title: "Create Next App",

@@ -94,7 +94,7 @@ const DropDown: React.FC<any> = ({ current, onMouseLeave }) => {
   if (current == "girls")
     return (
       <section
-        className="p-1 border rounded shadow position-absolute w-100 bg-light"
+        className="p-1 border rounded shadow position-absolute w-100 bg-light z-3"
         onMouseLeave={onMouseLeave}
       >
         <Tabs tabPosition="right" defaultActiveKey="1" items={items} />
