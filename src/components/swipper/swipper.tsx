@@ -2,6 +2,15 @@ import React from "react";
 import { Divider } from "antd";
 import Production from "src/components/production/production";
 import { Swiper, SwiperSlide } from "swiper/react";
+import {
+  Navigation,
+  Pagination,
+  A11y,
+  Autoplay,
+  FreeMode,
+} from "swiper/modules";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 import pic4 from "src/assets/images/pic4.jpg";
 import pic5 from "src/assets/images/pic5.jpg";
@@ -14,10 +23,27 @@ const Swip = ({ itemList = [], caption = "" }) => {
       <Divider orientation="left">جدیدترین محصولات</Divider>
       <div className="px-3">
         <Swiper
+          modules={[Navigation, Pagination, A11y, Autoplay, FreeMode]}
           spaceBetween={5}
           slidesPerView={5}
-          onSlideChange={() => console.log("slide change")}
-          onSwiper={(swiper) => console.log(swiper)}
+          autoplay
+          navigation
+          freeMode={true}
+          pagination={{ dynamicBullets: true }}
+          breakpoints={{
+            640: {
+              slidesPerView: 2,
+              spaceBetween: 20,
+            },
+            768: {
+              slidesPerView: 4,
+              spaceBetween: 40,
+            },
+            1024: {
+              slidesPerView: 5,
+              spaceBetween: 50,
+            },
+          }}
         >
           <SwiperSlide>
             <Production

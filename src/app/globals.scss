@@ -15,6 +15,11 @@
 @import "../../node_modules/bootstrap/scss/helpers";
 @import "../../node_modules/bootstrap/scss/utilities/api";
 
+@import "../assets/css/puffIn";
+@import "../assets/css/puffOut";
+
+// @import "../assets/css/media";
+
 :root {
   --color-primary: #0d6efd;
   --label-bg: #0d6efd;
@@ -24,6 +29,11 @@
 @media (prefers-color-scheme: dark) {
   :root {
   }
+}
+
+.magictime {
+  animation-duration: 1s;
+  animation-fill-mode: both;
 }
 
 * {
@@ -113,7 +123,7 @@ a {
   font-size: 13px;
   font-weight: 400;
 }
-.favorit {
+.favorite {
   position: absolute;
   display: flex;
   justify-content: center;
@@ -122,4 +132,19 @@ a {
   left: -1rem;
   font-size: 24px;
   color: #f44336;
+}
+.ant-card-cover {
+  overflow: hidden;
+}
+
+// animation
+.hover-zoomIn img {
+  -webkit-transform: scale(1);
+  transform: scale(1);
+  -webkit-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
+}
+.hover-zoomIn:hover img {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
 }
