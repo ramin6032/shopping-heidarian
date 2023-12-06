@@ -2,21 +2,12 @@ import React, { useState, useEffect } from "react";
 import { Card } from "antd";
 import Icon from "@ant-design/icons";
 import Image from "next/image";
-import type { StaticImageData } from "next/image";
 import { bookmark, bookmarkFill } from "src/assets/svg/icons";
+import { productProps } from "src/lib/types";
 
 const { Meta } = Card;
 
-type props = {
-  src: StaticImageData;
-  title: string;
-  description?: string;
-  price: string;
-  prevPrice?: string;
-  label?: string;
-};
-
-const Production: React.FC<props> = ({
+const Production: React.FC<productProps> = ({
   src,
   title,
   description,
@@ -47,7 +38,7 @@ const Production: React.FC<props> = ({
   }, [isFavorite]);
 
   return (
-    <div className="py-3 px-2 position-relative">
+    <div className="pt-2 pb-4 px-2 position-relative">
       <Card
         hoverable
         cover={<Image alt="example" src={src} className="cover" />}
@@ -59,7 +50,7 @@ const Production: React.FC<props> = ({
             description={description}
             style={{ height: 90 }}
           />
-          <div className={isFavorite ? "favorite" : "favorite "}>
+          <div className="productBookmark-">
             <Icon
               component={isFavorite ? bookmarkFill : bookmark}
               onClick={favoriteOnClick}
@@ -78,7 +69,7 @@ const Production: React.FC<props> = ({
         </div>
       </Card>
 
-      {label && <div className="label">{label}</div>}
+      {label && <div className="productLabel">{label}</div>}
     </div>
   );
 };

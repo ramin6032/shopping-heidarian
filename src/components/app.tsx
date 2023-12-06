@@ -3,8 +3,9 @@ import { ConfigProvider } from "antd";
 import Navigation from "./navigation/navigation";
 import Carousel from "./carousel/carousel";
 import Category from "./categories/categories";
-import Swiper from "./swipper/swipper";
+import ProductsSlider from "./productsSlider/productsSlider";
 import Offer from "./offer/offer";
+import AmazingOffer from "./amazingOffer/amazingOffer";
 
 export default function App() {
   return (
@@ -24,8 +25,8 @@ export default function App() {
       <Navigation />
       <Carousel />
       <Category />
-      <Swiper />
-      <Offer />
+      <ProductsSlider caption="محصولات جدید" />
+      <AmazingOffer />
     </ConfigProvider>
   );
 }

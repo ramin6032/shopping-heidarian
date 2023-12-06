@@ -1,7 +1,8 @@
 import React from "react";
 import { Divider } from "antd";
-import Production from "src/components/production/production";
+import Production from "src/components/product/product";
 import { Swiper, SwiperSlide } from "swiper/react";
+import type { ProductsSliderProps } from "src/lib/types";
 import {
   Navigation,
   Pagination,
@@ -9,6 +10,7 @@ import {
   Autoplay,
   FreeMode,
 } from "swiper/modules";
+import { swipperBreakpoints } from "src/lib/consts";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
@@ -17,33 +19,20 @@ import pic5 from "src/assets/images/pic5.jpg";
 import pic6 from "src/assets/images/pic6.jpg";
 import pic7 from "src/assets/images/pic7.jpg";
 
-const Swip = ({ itemList = [], caption = "" }) => {
+const ProductsSlider: React.FC<ProductsSliderProps> = ({ caption }) => {
   return (
     <>
-      <Divider orientation="left">جدیدترین محصولات</Divider>
+      {caption && <Divider orientation="left">جدیدترین محصولات</Divider>}
       <div className="px-3">
         <Swiper
           modules={[Navigation, Pagination, A11y, Autoplay, FreeMode]}
           spaceBetween={5}
           slidesPerView={5}
-          autoplay
+          autoplay={{ pauseOnMouseEnter: true }}
           navigation
           freeMode={true}
           pagination={{ dynamicBullets: true }}
-          breakpoints={{
-            640: {
-              slidesPerView: 2,
-              spaceBetween: 20,
-            },
-            768: {
-              slidesPerView: 4,
-              spaceBetween: 40,
-            },
-            1024: {
-              slidesPerView: 5,
-              spaceBetween: 50,
-            },
-          }}
+          breakpoints={swipperBreakpoints}
         >
           <SwiperSlide>
             <Production
@@ -125,4 +114,4 @@ const Swip = ({ itemList = [], caption = "" }) => {
     </>
   );
 };
-export default Swip;
+export default ProductsSlider;
