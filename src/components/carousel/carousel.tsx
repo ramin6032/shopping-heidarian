@@ -12,7 +12,7 @@ const contentStyle: React.CSSProperties = {
 
 const Carousel: React.FC = () => {
   const onChange = (currentSlide: number) => {
-    console.log(currentSlide);
+    // console.log(currentSlide);
   };
 
   return (

@@ -18,8 +18,10 @@
 @import "../assets/css/puffIn";
 @import "../assets/css/puffOut";
 
-// @import "../assets/css/media";
+@import "../components/amazingOffer/amazingOffer.scss";
+@import "../components/productCard/productCard.scss";
 
+// @import "../assets/css/media";
 :root {
   --color-primary: #0d6efd;
   --body-bg: rgb(255, 255, 255, 1);
@@ -30,8 +32,6 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-  }
 }
 
 .magictime {
@@ -65,11 +65,6 @@ a {
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-}
 //  background
 .bg-body {
   background-color: var(--body-bg);
@@ -78,26 +73,29 @@ a {
 .cover {
   object-position: center;
   object-fit: cover;
+}
+.dropDownMenu .cover {
+  object-position: center;
+  object-fit: cover;
   height: 100%;
   width: 100%;
 }
-.categoryCoverContainer:hover .cover,
 .coverContainer:hover .cover {
   opacity: 0.8;
 }
 .coverContainer {
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+}
+.dropDownMenu .coverContainer {
   min-height: 100px;
   overflow: hidden;
   position: relative;
   max-height: 170px;
   cursor: pointer;
 }
-.categoryCoverContainer {
-  height: 300px;
-  overflow: hidden;
-  position: relative;
-  cursor: pointer;
-}
+
 .subtitle {
   position: absolute;
   bottom: 0;
@@ -117,60 +115,10 @@ a {
   color: var(--color-primary);
 }
 
-// product style
-.productLabel {
-  background-color: var(--label-bg);
-  color: var(--label-color);
-  padding: 3px 5px;
-  border-radius: 0 10px 10px 0;
-  position: absolute;
-  top: 1.5rem;
-  left: 8px;
-  font-size: 13px;
-  font-weight: 400;
+.productCard .swiper-slide {
+  width: 250px !important;
 }
-.productBookmark {
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  top: 0rem;
-  left: -1.3rem;
-  font-size: 24px;
-  color: #f44336;
-}
-.ant-card-cover {
-  overflow: hidden;
-}
-
-// amazing offer style
-.amaizingOfferContainer {
-  background-color: var(--amazingAffer-bg);
-}
-.amaizingOfferContainer .header {
-  color: var(--amazingAffer-color);
-}
-
-// animation
-.hover-zoomIn img {
-  -webkit-transform: scale(1);
-  transform: scale(1);
-  -webkit-transition: 0.3s ease-in-out;
-  transition: 0.3s ease-in-out;
-}
-.hover-zoomIn:hover img {
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
-}
-
-.card__top,
-.card__bottom,
-.card__back {
-  min-width: 45px;
-}
-.flip-countdown.size-medium
-  .flip-countdown-piece
-  .flip-countdown-card
-  .flip-countdown-card-sec {
-  font-size: 42px !important;
+.categoryCard .swiper-slide {
+  width: 210px !important;
+  height: 300px !important;
 }

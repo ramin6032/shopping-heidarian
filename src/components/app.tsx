@@ -1,32 +1,29 @@
 "use client";
 import { ConfigProvider } from "antd";
-import Navigation from "./navigation/navigation";
-import Carousel from "./carousel/carousel";
-import Category from "./categories/categories";
-import ProductsSlider from "./productsSlider/productsSlider";
-import Offer from "./offer/offer";
-import AmazingOffer from "./amazingOffer/amazingOffer";
+import store from "src/lib/redux/store";
+import { Provider } from "react-redux";
 
-export default function App() {
+export default function App({ children }: { children: React.ReactNode }) {
   return (
-    <ConfigProvider
-      direction="rtl"
-      theme={{
-        token: {
-          fontFamily: "Vazirmatn, tahoma",
-        },
-        components: {
-          Card: {
-            headerFontSize: 14,
+    <Provider store={store}>
+      <ConfigProvider
+        direction="rtl"
+        theme={{
+          token: {
+            fontFamily: "Vazirmatn, tahoma",
           },
-        },
-      }}
-    >
-      <Navigation />
-      <Carousel />
-      <Category />
-      <ProductsSlider caption="محصولات جدید" />
-      <AmazingOffer />
-    </ConfigProvider>
+          components: {
+            Card: {
+              headerFontSize: 14,
+            },
+            Button: {
+              textHoverBg: "transparent",
+            },
+          },
+        }}
+      >
+        {children}
+      </ConfigProvider>
+    </Provider>
   );
 }

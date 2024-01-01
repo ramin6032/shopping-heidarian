@@ -11,7 +11,7 @@ const CountDown: React.FC = () => {
         hourTitle="ساعت"
         minuteTitle="دقیقه"
         secondTitle="ثانیه"
-        size="medium"
+        size="small"
         endAt={new Date(
           Date.now() +
             1000 /* sec */ *

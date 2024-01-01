@@ -1,14 +1,63 @@
-import type { StaticImageData } from "next/image";
+import React from "react";
+import type { SwiperOptions, NavigationOptions } from "swiper/types";
 
-export type productProps = {
-  src: StaticImageData;
+export interface productCard {
+  src: string;
   title: string;
   description?: string;
   price: string;
-  prevPrice?: string;
-  label?: string;
-};
+  prevPrice: string;
+  label: string;
+}
 
-export type ProductsSliderProps = {
+export interface categoryCard {
+  src: string;
+  caption: string;
+  type: "square" | "circle";
+}
+
+export interface amazingOffer {
+  items: React.ReactNode[];
+}
+
+export interface swip {
   caption?: string;
-};
+  navigation?: boolean | NavigationOptions | undefined;
+  spaceBetween?: string | number | undefined;
+  slidesPerView?: number | "auto" | undefined;
+  items: React.ReactNode[];
+  type: "productCard" | "categoryCard";
+  autoplay?: boolean;
+  pagination?: boolean;
+  breakpoints:
+    | {
+        [width: number]: SwiperOptions;
+        [ratio: string]: SwiperOptions;
+      }
+    | undefined;
+}
+
+export interface menu {
+  label: string;
+  key: string;
+  hover?: boolean;
+  icon?: string | React.ReactNode;
+  category?: string;
+  href?: string;
+  tabs?: tabOfMenu[];
+  submenu?: submenu[];
+}
+
+export interface submenu {
+  label: string;
+  category: string;
+  key: string;
+  image?: string;
+  icon?: string | React.ReactNode;
+  tabKey?: string;
+}
+
+export interface tabOfMenu {
+  label: string;
+  key: submenu[];
+}

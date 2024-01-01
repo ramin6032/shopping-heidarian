@@ -1,0 +1,38 @@
+.amaizingOfferContainer {
+  position: relative;
+  padding: 1rem;
+  margin-top: 1rem;
+}
+.amazigOfferShockShopping {
+  background: url("../../assets/images/shock-girl-1.png") center center
+    no-repeat;
+  width: 390px;
+  height: 320px;
+  position: absolute;
+  right: 1rem;
+  bottom: calc(1rem);
+}
+.amazingOfferBorder {
+  border-radius: 15px;
+  z-index: -1;
+  background-color: #fee215;
+}
+
+.amazigOfferCaption {
+  background: url("../../assets/images/text/amazingOfferText.png") center center
+    no-repeat;
+  height: 45px;
+  width: 242px;
+}
+
+.amazingOfferSlider {
+  max-width: 50%;
+}
+
+@media only screen and (max-width: 768px) {
+  .amazigOfferShockShopping {
+    display: none;
+  }
+  .amazigOfferCounter {
+  }
+}

@@ -1,38 +1,42 @@
-export const swipperBreakpoints = {
-  280: {
+export const productCardSwipperBreakpoints = {
+  250: {
     slidesPerView: 1,
   },
-  520: {
+  530: {
     slidesPerView: 2,
   },
-  768: {
+  810: {
     slidesPerView: 3,
   },
-  1024: {
+  1090: {
     slidesPerView: 4,
   },
-  1250: {
+  1360: {
     slidesPerView: 5,
   },
 };
 
-export const AmazingOfferSwipperBreakpoints = {
-  280: {
+export const categorySwipperBreakpoints = {
+  250: {
     slidesPerView: 1,
   },
-  576: {
-    slidesPerView: 2,
+  530: {
+    slidesPerView: 3,
   },
-  768: {
-    slidesPerView: 1,
-  },
-  992: {
-    slidesPerView: 2,
-  },
-  1200: {
-    slidesPerView: 5,
-  },
-  1400: {
+  810: {
     slidesPerView: 4,
   },
+  1090: {
+    slidesPerView: 5,
+  },
+  1360: {
+    slidesPerView: 6,
+  },
 };
+
+export const categoryCardOptions = {
+  width: 210,
+  height: 300,
+};
+
+export const NumberOfRowsInDesktopMenu = 4; //تعداد ردیف های هر ستون از منو در دسکتاپ

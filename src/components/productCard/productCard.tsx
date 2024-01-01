@@ -3,11 +3,11 @@ import { Card } from "antd";
 import Icon from "@ant-design/icons";
 import Image from "next/image";
 import { bookmark, bookmarkFill } from "src/assets/svg/icons";
-import { productProps } from "src/lib/types";
+import { productCard } from "src/lib/types";
 
 const { Meta } = Card;
 
-const Production: React.FC<productProps> = ({
+const ProductCard: React.FC<productCard> = ({
   src,
   title,
   description,
@@ -38,19 +38,27 @@ const Production: React.FC<productProps> = ({
   }, [isFavorite]);
 
   return (
-    <div className="pt-2 pb-4 px-2 position-relative">
+    <div className="pt-2 pb-4 product-card position-relative ">
       <Card
         hoverable
-        cover={<Image alt="example" src={src} className="cover" />}
-        className="hover-zoomIn"
+        cover={
+          <Image
+            alt="example"
+            src={src}
+            className="cover"
+            width={250}
+            height={250}
+          />
+        }
+        className="hover-zoomIn "
       >
-        <div className="position-relative">
+        <div className="position-relative ">
           <Meta
             title={title}
+            style={{ height: 40 }}
             description={description}
-            style={{ height: 90 }}
           />
-          <div className="productBookmark-">
+          <div className="productBookmark">
             <Icon
               component={isFavorite ? bookmarkFill : bookmark}
               onClick={favoriteOnClick}
@@ -59,7 +67,7 @@ const Production: React.FC<productProps> = ({
           </div>
         </div>
 
-        <div className="d-flex justify-content-between">
+        <div className="d-flex flex-wrap justify-content-between align-items-end product-price">
           <span className="fw-medium fs-6 color-primary">{`${parseInt(
             price
           ).toLocaleString()} ریال`}</span>
@@ -74,4 +82,4 @@ const Production: React.FC<productProps> = ({
   );
 };
 
-export default Production;
+export default ProductCard;

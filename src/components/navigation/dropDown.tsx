@@ -1,103 +1,58 @@
 import React from "react";
 import { List, Tabs } from "antd";
+import { useAppSelector } from "src/lib/redux/hooks";
 import type { TabsProps } from "antd";
 import Image from "next/image";
 import pic from "src/assets/images/mega-menu-category-01.jpg";
+import { NumberOfRowsInDesktopMenu } from "src/lib/consts";
+import { submenu } from "src/lib/types";
+import Link from "next/link";
 
-const data1 = [
-  "بلوز شلوار",
-  "بلوز",
-  "سویشرت شلوار",
-  "سرهمی",
-  "شورت پادار",
-  "کاپشن",
-  "سه تیکه",
-];
+const DropDown: React.FC<any> = ({ onMouseLeave, current }) => {
+  const NumberOfRows = NumberOfRowsInDesktopMenu + 1;
+  const subMenuColumns: submenu[][] = [];
+  const column: submenu[] = [];
+  const menu = useAppSelector((state) => state.web.menu);
+  // const tabs = menu.
 
-const data2 = [
-  "شلوار",
-  "سویشرت",
-  "شومیز",
-  "هودی و شلوار",
-  "هودی",
-  "شورت اسلیپ",
-  "رامپر",
-];
-
-const Spring = () => (
-  <div className="d-flex justify-content-between">
-    <div className="d-flex gx-3">
-      <div className="px-1" style={{ minWidth: "180px" }}>
-        <List
-          dataSource={data1}
-          renderItem={(item) => <List.Item>{item}</List.Item>}
-          split={false}
-        />
-      </div>
-
-      <div className="px-1" style={{ minWidth: "180px" }}>
-        <List
-          dataSource={data2}
-          renderItem={(item) => <List.Item>{item}</List.Item>}
-          split={false}
-        />
-      </div>
-    </div>
-
-    <div className="row g-3 me-5" style={{ maxWidth: "600px" }}>
-      <div className="col-12">
-        <div className="coverContainer rounded">
-          <Image src={pic} alt="pic" className="cover" />
-          <p className="subtitle">تخفیف ویژه</p>
-        </div>
-      </div>
-      <div className="col-6">
-        <div className="coverContainer rounded">
-          <Image src={pic} alt="pic" className="cover" />
-          <p className="subtitle">تخفیف ویژه</p>
-        </div>
-      </div>
-      <div className="col-6">
-        <div className="coverContainer rounded">
-          <Image src={pic} alt="pic" className="cover" />
-          <p className="subtitle">تخفیف ویژه</p>
-        </div>
-      </div>
-    </div>
-  </div>
-);
-
-const items: TabsProps["items"] = [
-  {
-    key: "1",
-    label: "بهاره",
-    children: <Spring />,
-  },
-  {
-    key: "2",
-    label: "تابستانه",
-    children: "Content of Tab Pane 2",
-  },
-  {
-    key: "3",
-    label: "پائیزه",
-    children: "Content of Tab Pane 3",
-  },
-  {
-    key: "4",
-    label: "زمستانه",
-    children: "Content of Tab Pane 3",
-  },
-];
-
-const DropDown: React.FC<any> = ({ current, onMouseLeave }) => {
-  if (current == "girls")
+  const [currentMenu] = menu.filter((item) => item.key === current);
+  console.log("menu", currentMenu);
+  currentMenu?.submenu?.forEach((submenu, index) => {
+    if (index % NumberOfRows) {
+      column.push(submenu);
+    } else {
+      subMenuColumns.push(column);
+      column.splice(0, column.length);
+    }
+  });
+  console.log("subMenuColumns", subMenuColumns);
+  if (current)
     return (
       <section
         className="p-1 border rounded shadow position-absolute w-100 bg-light z-3"
         onMouseLeave={onMouseLeave}
       >
-        <Tabs tabPosition="right" defaultActiveKey="1" items={items} />
+        <div className="d-flex flex-wrap justify-content-between p-3 dropDownMenu">
+          <div className="d-flex gx-3">
+            {subMenuColumns.map((item, index) => {
+              const column = item;
+              console.log("column", column);
+              return (
+                <div key={index} className="px-1" style={{ minWidth: "180px" }}>
+                  {column.map((submenu) => (
+                    <Link
+                      key={submenu.key}
+                      href={`/category/${submenu.category}`}
+                      className="d-block py-2"
+                    >
+                      {submenu.label}
+                    </Link>
+                  ))}
+                </div>
+              );
+            })}
+          </div>
+        </div>
       </section>
     );
 
