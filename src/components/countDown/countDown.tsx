@@ -3,8 +3,9 @@ import FlipCountdown from "@rumess/react-flip-countdown";
 
 const CountDown: React.FC = () => {
   return (
-    <div dir="ltr">
+    <div dir="ltr" className="text-end">
       <FlipCountdown
+        className="d-inline"
         hideYear
         hideMonth
         hideDay

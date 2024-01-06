@@ -1,8 +1,10 @@
+"use client";
+
 import React, { useState, useEffect } from "react";
 import { Card } from "antd";
 import Icon from "@ant-design/icons";
 import Image from "next/image";
-import { bookmark, bookmarkFill } from "src/assets/svg/icons";
+import { bookmark, bookmarkFill } from "src/lib/icons";
 import { productCard } from "src/lib/types";
 
 const { Meta } = Card;
