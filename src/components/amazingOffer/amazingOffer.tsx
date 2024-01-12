@@ -1,7 +1,6 @@
 import React from "react";
 import CountDown from "../countDown/countDown";
 import Swip from "../swip/swip";
-import { productCardSwipperBreakpoints } from "src/lib/consts";
 import { amazingOffer } from "src/lib/types";
 
 const AmazingOffer: React.FC<amazingOffer> = ({ items }) => {
@@ -17,13 +16,7 @@ const AmazingOffer: React.FC<amazingOffer> = ({ items }) => {
           </div>
         </div>
         <div className="col-xl-8 col-12">
-          <Swip
-            type="productCard"
-            breakpoints={productCardSwipperBreakpoints}
-            items={items}
-            navigation
-            pagination
-          />
+          <Swip widthElement={330} items={items} />
         </div>
       </div>
     </div>

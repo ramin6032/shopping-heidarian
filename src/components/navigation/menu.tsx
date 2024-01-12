@@ -2,8 +2,8 @@ import Image from "next/image";
 import logo from "src/assets/svg/logo.svg";
 import { useAppSelector } from "src/lib/redux/hooks";
 import type { menu } from "src/lib/types";
-import { Button } from "antd";
-import { SearchOutlined } from "@ant-design/icons";
+import { Button, Input } from "antd";
+import { Search } from "src/lib/icons";
 
 const items = [
   {
@@ -39,32 +39,37 @@ const items = [
 const MenuBar: React.FC<any> = ({ setCurrent, current }) => {
   const menu = useAppSelector((state) => state.web.menu);
   return (
-    <nav className="d-flex user-select-none border-bottom">
-      {menu.map((menu: menu) => (
-        // <span
-        //   className="p-3"
-        //   key={menu?.key}
-        //   onMouseOver={() => setCurrent(menu?.key)}
-        //   style={{
-        //     fontWeight:
-        //       current === menu?.key && menu?.hover !== false ? "500" : "",
-        //   }}
-        // >
-        //   {menu?.label}
-        // </span>
-        <Button
-          size="large"
-          key={menu.key}
-          type="text"
-          icon={menu.icon}
-          onMouseOver={() => setCurrent(menu?.key)}
-          style={{
-            fontWeight: current === menu.key && menu.hover ? "500" : "",
-          }}
-        >
-          {menu.label}
-        </Button>
-      ))}
+    <nav className="d-flex flex-column">
+      <div className="d-block py-1">
+        <Input size="large" placeholder="جستجو" prefix={<Search />} />
+      </div>
+      <div>
+        {menu.map((menu: menu) => (
+          // <span
+          //   className="p-3"
+          //   key={menu?.key}
+          //   onMouseOver={() => setCurrent(menu?.key)}
+          //   style={{
+          //     fontWeight:
+          //       current === menu?.key && menu?.hover !== false ? "500" : "",
+          //   }}
+          // >
+          //   {menu?.label}
+          // </span>
+          <Button
+            size="large"
+            key={menu.key}
+            type="text"
+            icon={menu.icon}
+            onMouseOver={() => setCurrent(menu?.key)}
+            style={{
+              fontWeight: current === menu.key && menu.hover ? "500" : "",
+            }}
+          >
+            {menu.label}
+          </Button>
+        ))}
+      </div>
     </nav>
   );
 };

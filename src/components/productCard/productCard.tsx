@@ -6,6 +6,7 @@ import Icon from "@ant-design/icons";
 import Image from "next/image";
 import { bookmark, bookmarkFill } from "src/lib/icons";
 import { productCard } from "src/lib/types";
+import { FlipLeft } from "src/lib/animation";
 
 const { Meta } = Card;
 
@@ -40,47 +41,49 @@ const ProductCard: React.FC<productCard> = ({
   }, [isFavorite]);
 
   return (
-    <div className="pt-2 pb-4 product-card position-relative ">
-      <Card
-        hoverable
-        cover={
-          <Image
-            alt="example"
-            src={src}
-            className="cover"
-            width={250}
-            height={250}
-          />
-        }
-        className="hover-zoomIn "
-      >
-        <div className="position-relative ">
-          <Meta
-            title={title}
-            style={{ height: 40 }}
-            description={description}
-          />
-          <div className="productBookmark">
-            <Icon
-              component={isFavorite ? bookmarkFill : bookmark}
-              onClick={favoriteOnClick}
-              className={favIconClass}
+    <FlipLeft>
+      <div className="pt-2 pb-4 product-card position-relative ">
+        <Card
+          hoverable
+          cover={
+            <Image
+              alt="example"
+              src={src}
+              className="cover"
+              width={250}
+              height={250}
             />
+          }
+          className="hover-zoomIn "
+        >
+          <div className="position-relative ">
+            <Meta
+              title={title}
+              style={{ height: 40 }}
+              description={description}
+            />
+            <div className="productBookmark">
+              <Icon
+                component={isFavorite ? bookmarkFill : bookmark}
+                onClick={favoriteOnClick}
+                className={favIconClass}
+              />
+            </div>
           </div>
-        </div>
 
-        <div className="d-flex flex-wrap justify-content-between align-items-end product-price">
-          <span className="fw-medium fs-6 color-primary">{`${parseInt(
-            price
-          ).toLocaleString()} ریال`}</span>
-          <span className="text-decoration-line-through text-black-50">
-            {prevPrice ? `${parseInt(prevPrice).toLocaleString()} ریال` : ""}
-          </span>
-        </div>
-      </Card>
+          <div className="d-flex flex-wrap justify-content-between align-items-end product-price">
+            <span className="fw-medium fs-6 color-primary">{`${parseInt(
+              price
+            ).toLocaleString()} ریال`}</span>
+            <span className="text-decoration-line-through text-black-50">
+              {prevPrice ? `${parseInt(prevPrice).toLocaleString()} ریال` : ""}
+            </span>
+          </div>
+        </Card>
 
-      {label && <div className="productLabel">{label}</div>}
-    </div>
+        {label && <div className="productLabel">{label}</div>}
+      </div>
+    </FlipLeft>
   );
 };
 

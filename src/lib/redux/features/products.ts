@@ -130,6 +130,36 @@ const initialState: initialState = {
       caption: "با تخفیف",
       type: "square",
     },
+    {
+      src: "/images/categories/pic1.jpg",
+      caption: "تابستانه",
+      type: "square",
+    },
+    {
+      src: "/images/categories/pic2.jpg",
+      caption: "زمستانه",
+      type: "square",
+    },
+    {
+      src: "/images/categories/pic3.jpg",
+      caption: "بهاره",
+      type: "square",
+    },
+    {
+      src: "/images/categories/pic1.jpg",
+      caption: "عیدانه",
+      type: "square",
+    },
+    {
+      src: "/images/categories/pic2.jpg",
+      caption: "مجلسی",
+      type: "square",
+    },
+    {
+      src: "/images/categories/pic3.jpg",
+      caption: "با تخفیف",
+      type: "square",
+    },
   ],
 };
 

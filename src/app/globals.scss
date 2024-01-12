@@ -21,6 +21,9 @@
 @import "../components/amazingOffer/amazingOffer.scss";
 @import "../components/productCard/productCard.scss";
 
+@import "../components/swip/style.scss";
+@import "../components//carousel/style.scss";
+
 // @import "../assets/css/media";
 :root {
   --color-primary: #0d6efd;
@@ -94,6 +97,14 @@ a {
   position: relative;
   max-height: 170px;
   cursor: pointer;
+}
+.thumbnail-slider .splide__slide {
+  opacity: 0.6;
+}
+
+.thumbnail-slider .splide__slide.is-active {
+  opacity: 1;
+  border: none !important;
 }
 
 .subtitle {

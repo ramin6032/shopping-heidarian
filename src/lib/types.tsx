@@ -22,19 +22,9 @@ export interface amazingOffer {
 
 export interface swip {
   caption?: string;
-  navigation?: boolean | NavigationOptions | undefined;
-  spaceBetween?: string | number | undefined;
-  slidesPerView?: number | "auto" | undefined;
   items: React.ReactNode[];
-  type: "productCard" | "categoryCard";
-  autoplay?: boolean;
-  pagination?: boolean;
-  breakpoints:
-    | {
-        [width: number]: SwiperOptions;
-        [ratio: string]: SwiperOptions;
-      }
-    | undefined;
+  widthElement: number;
+  gap?: number;
 }
 
 export interface menu {

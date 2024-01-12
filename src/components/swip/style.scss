@@ -1,0 +1,16 @@
+.swipe-container {
+  display: flex;
+  gap: 1rem;
+  overflow: auto;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+}
+
+/* scrollbar should be hidden */
+.swipe-container::-webkit-scrollbar {
+  display: none;
+}
+
+.swipe-element {
+  scroll-snap-align: start;
+}
