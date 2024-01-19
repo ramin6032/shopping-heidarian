@@ -8,6 +8,7 @@ export interface productCard {
   price: string;
   prevPrice: string;
   label: string;
+  animation: boolean;
 }
 
 export interface categoryCard {

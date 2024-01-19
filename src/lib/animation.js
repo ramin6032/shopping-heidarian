@@ -1,8 +1,8 @@
 import AOS from "aos";
 import "aos/dist/aos.css";
+AOS.init();
 
 export const FadeUp = ({ children, delay = 50 }) => {
-  AOS.init();
   return (
     <div
       data-aos="fade-up"
@@ -10,8 +10,8 @@ export const FadeUp = ({ children, delay = 50 }) => {
       data-aos-delay={delay}
       data-aos-duration="1000"
       data-aos-easing="ease-in-out"
-      data-aos-mirror="true"
-      data-aos-once="false"
+      data-aos-mirror="false"
+      data-aos-once="true"
       data-aos-anchor-placement="top-center"
     >
       {children}
@@ -26,8 +26,8 @@ export const FadeDown = ({ children }) => (
     data-aos-delay="50"
     data-aos-duration="1000"
     data-aos-easing="ease-in-out"
-    data-aos-mirror="true"
-    data-aos-once="false"
+    data-aos-mirror="false"
+    data-aos-once="true"
     data-aos-anchor-placement="bottom-center"
   >
     {children}
@@ -35,7 +35,6 @@ export const FadeDown = ({ children }) => (
 );
 
 export const ZoomInUp = ({ children, delay = 50 }) => {
-  AOS.init();
   return (
     <div
       data-aos="zoom-in"
@@ -43,8 +42,8 @@ export const ZoomInUp = ({ children, delay = 50 }) => {
       data-aos-delay={delay}
       data-aos-duration="1000"
       data-aos-easing="ease-in-out"
-      data-aos-mirror="true"
-      data-aos-once="false"
+      data-aos-mirror="false"
+      data-aos-once="true"
       data-aos-anchor-placement="top-center"
     >
       {children}
@@ -53,7 +52,6 @@ export const ZoomInUp = ({ children, delay = 50 }) => {
 };
 
 export const FlipLeft = ({ children, delay = 50 }) => {
-  AOS.init();
   return (
     <div
       data-aos="flip-left"
@@ -61,8 +59,8 @@ export const FlipLeft = ({ children, delay = 50 }) => {
       data-aos-delay={delay}
       data-aos-duration="1000"
       data-aos-easing="ease-in-out"
-      data-aos-mirror="true"
-      data-aos-once="false"
+      data-aos-mirror="false"
+      data-aos-once="true"
       data-aos-anchor-placement="top-center"
     >
       {children}

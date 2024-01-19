@@ -27,6 +27,7 @@
 // @import "../assets/css/media";
 :root {
   --color-primary: #0d6efd;
+  --color-danger: #ff4d4f;
   --body-bg: rgb(255, 255, 255, 1);
   --label-bg: #0d6efd;
   --label-color: #ffffff;
@@ -136,4 +137,7 @@ a {
 
 .flip-countdown {
   display: inline-block;
+}
+.space-top {
+  padding-top: 130px;
 }

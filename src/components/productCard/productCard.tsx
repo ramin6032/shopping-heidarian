@@ -17,6 +17,7 @@ const ProductCard: React.FC<productCard> = ({
   price,
   prevPrice,
   label,
+  animation,
 }) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const [favIconClass, setFavIconClass] = useState("");
@@ -40,50 +41,98 @@ const ProductCard: React.FC<productCard> = ({
     };
   }, [isFavorite]);
 
-  return (
-    <FlipLeft>
-      <div className="pt-2 pb-4 product-card position-relative ">
-        <Card
-          hoverable
-          cover={
-            <Image
-              alt="example"
-              src={src}
-              className="cover"
-              width={250}
-              height={250}
-            />
-          }
-          className="hover-zoomIn "
-        >
-          <div className="position-relative ">
-            <Meta
-              title={title}
-              style={{ height: 40 }}
-              description={description}
-            />
-            <div className="productBookmark">
-              <Icon
-                component={isFavorite ? bookmarkFill : bookmark}
-                onClick={favoriteOnClick}
-                className={favIconClass}
+  if (animation)
+    return (
+      <FlipLeft>
+        <div className="pt-2 pb-4 product-card position-relative ">
+          <Card
+            hoverable
+            cover={
+              <Image
+                alt="example"
+                src={src}
+                className="cover"
+                width={250}
+                height={250}
               />
+            }
+            className="hover-zoomIn "
+          >
+            <div className="position-relative ">
+              <Meta
+                title={title}
+                style={{ height: 40 }}
+                description={description}
+              />
+              <div className="productBookmark">
+                <Icon
+                  component={isFavorite ? bookmarkFill : bookmark}
+                  onClick={favoriteOnClick}
+                  className={favIconClass}
+                />
+              </div>
             </div>
-          </div>
 
-          <div className="d-flex flex-wrap justify-content-between align-items-end product-price">
-            <span className="fw-medium fs-6 color-primary">{`${parseInt(
-              price
-            ).toLocaleString()} ریال`}</span>
-            <span className="text-decoration-line-through text-black-50">
-              {prevPrice ? `${parseInt(prevPrice).toLocaleString()} ریال` : ""}
-            </span>
-          </div>
-        </Card>
+            <div className="d-flex flex-wrap justify-content-between align-items-end product-price">
+              <span className="fw-medium fs-6 color-primary">{`${parseInt(
+                price
+              ).toLocaleString()} ریال`}</span>
+              <span className="text-decoration-line-through text-black-50">
+                {prevPrice
+                  ? `${parseInt(prevPrice).toLocaleString()} ریال`
+                  : ""}
+              </span>
+            </div>
+          </Card>
 
-        {label && <div className="productLabel">{label}</div>}
-      </div>
-    </FlipLeft>
+          {label && <div className="productLabel">{label}</div>}
+        </div>
+      </FlipLeft>
+    );
+
+  // animation is false
+  return (
+    <div className="pt-2 pb-4 product-card position-relative ">
+      <Card
+        hoverable
+        cover={
+          <Image
+            alt="example"
+            src={src}
+            className="cover"
+            width={250}
+            height={250}
+          />
+        }
+        className="hover-zoomIn "
+      >
+        <div className="position-relative ">
+          <Meta
+            title={title}
+            style={{ height: 40 }}
+            description={description}
+          />
+          <div className="productBookmark">
+            <Icon
+              component={isFavorite ? bookmarkFill : bookmark}
+              onClick={favoriteOnClick}
+              className={favIconClass}
+            />
+          </div>
+        </div>
+
+        <div className="d-flex flex-wrap justify-content-between align-items-end product-price">
+          <span className="fw-medium fs-6 color-primary">{`${parseInt(
+            price
+          ).toLocaleString()} ریال`}</span>
+          <span className="text-decoration-line-through text-black-50">
+            {prevPrice ? `${parseInt(prevPrice).toLocaleString()} ریال` : ""}
+          </span>
+        </div>
+      </Card>
+
+      {label && <div className="productLabel">{label}</div>}
+    </div>
   );
 };
 

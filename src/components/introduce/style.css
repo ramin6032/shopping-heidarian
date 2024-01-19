@@ -77,3 +77,12 @@
   border-radius: 8px;
   background: var(--Black-100, #f5f5f5);
 }
+.splide__track--nav > .splide__list > .splide__slide.is-active {
+  border: none;
+}
+.activeColor {
+  font-size: 50px !important;
+}
+.activeSize {
+  background-color: var(--color-primary) !important;
+}

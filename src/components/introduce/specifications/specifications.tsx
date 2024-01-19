@@ -2,69 +2,110 @@ import { Divider, Button } from "antd";
 import CountDown from "src/components/countDown/countDown";
 import { Plus, Minus, Heart, Shirt } from "src/lib/icons";
 import "../style.css";
+import { useEffect, useState } from "react";
 
-export default function Specifications() {
+export default function Specifications({ product }: { product: any }) {
+  const [price, setprice] = useState<number | string | undefined>(); // قابل پرداخت
+  const [realPrice, setRealPrice] = useState<number | string | undefined>(
+    product.price
+  ); //قیمت قبل از تخفیف
+  const [size, setSize] = useState<string | undefined>();
+  const [selectedColor, setSelectedColor] = useState<string | undefined>();
+  const [amount, setAmount] = useState<number>(1);
+
+  useEffect(() => {
+    if (product.offerStatus) {
+      setprice((product.price * (100 - product.offerDiscount)) / 100);
+    } else if (product.discount) {
+      setprice((product.price * (100 - product.discount)) / 100);
+    } else {
+      setprice(product.price);
+    }
+  }, [product]);
+
+  useEffect(() => {
+    if (size) {
+      const [{ price }] = product.size.filter(
+        (item: any) => item.size === size
+      );
+      setRealPrice(price);
+      if (product.offerStatus) {
+        setprice((price * (100 - product.offerDiscount)) / 100);
+      } else if (product.discount) {
+        setprice((price * (100 - product.discount)) / 100);
+      } else {
+        setprice(price);
+      }
+    }
+  }, [size, product]);
+
+  const showSize = () => {
+    return product.size.map((item: any, index: number) => (
+      <Button
+        key={index}
+        size="large"
+        type="primary"
+        shape="round"
+        onClick={() => setSize(item.size)}
+        className={item.size === size ? "activeSize" : ""}
+      >
+        {item.size}
+      </Button>
+    ));
+  };
+
+  const showColors = () => {
+    return product.color.map(
+      (color: { code: string; label: string }, index: number) => (
+        <div className="d-flex flex-column align-items-center" key={index}>
+          <Shirt
+            style={{
+              color: color.code,
+              fontSize: "38px",
+              cursor: "pointer",
+            }}
+            onClick={() => setSelectedColor(color.code)}
+            className={selectedColor === color.code ? "activeColor" : ""}
+          />
+          <small>{selectedColor === color.code ? color.label : ""}</small>
+        </div>
+      )
+    );
+  };
+
   return (
     <div className="specifications-container user-select-none">
-      <h3 className="specifications-title">سارافون صورتی</h3>
-      <p className="specifications-descrption">کد محصول: 1359</p>
-      <circle className="d-flex flex-column gap-3">
+      <h3 className="specifications-title">{product.name}</h3>
+      <p className="specifications-descrption">{`کد محصول: ${product.ID}`}</p>
+      <section className="d-flex flex-column gap-3">
         <div className="d-flex align-items-center gap-4 flex-wrap">
           <div className="specifications-price">
-            250,000 <span className="specifications-currency">تومان</span>
+            {parseInt(price).toLocaleString()}{" "}
+            <span className="specifications-currency">تومان</span>
           </div>
           <div className="specifications-price-line-through text-decoration-line-through  text-body-tertiary">
-            290,000 تومان
+            {parseInt(realPrice).toLocaleString()} تومان
           </div>
         </div>
-        <CountDown />
-      </circle>
+        {product.offerStatus ? <CountDown /> : null}
+      </section>
 
       <Divider />
-      <circle className="d-flex flex-column gap-3">
+      <section className="d-flex flex-column gap-3">
         <div className="specifications-caption">انتخاب سایز:</div>
         <div className="d-flex flex-wrap gap-3 specifications-size">
-          <Button size="large" type="primary" shape="circle">
-            35
-          </Button>
-
-          <Button size="large" type="primary" shape="circle">
-            40
-          </Button>
-
-          <Button size="large" type="primary" shape="circle">
-            45
-          </Button>
-
-          <Button size="large" type="primary" shape="circle">
-            50
-          </Button>
-
-          <Button size="large" type="primary" shape="circle">
-            55
-          </Button>
+          {showSize()}
         </div>
-      </circle>
+      </section>
 
-      <circle className="d-flex flex-column gap-3 mt-3">
+      <section className="d-flex flex-column gap-3 mt-3">
         <div className="specifications-caption">انتخاب رنگ:</div>
         <div className="d-flex flex-wrap gap-3 specifications-colors">
-          <Shirt
-            style={{ color: "#e6ce9e", fontSize: "38px", cursor: "pointer" }}
-          />
-          <Shirt
-            style={{ color: "#ffddd1", fontSize: "38px", cursor: "pointer" }}
-          />
-          <Shirt
-            style={{ color: "#fdca21", fontSize: "38px", cursor: "pointer" }}
-          />
-          <Shirt
-            style={{ color: "#c5b2b1", fontSize: "38px", cursor: "pointer" }}
-          />
+          {showColors()}
         </div>
-      </circle>
+      </section>
 
-      <circle className="mt-4 d-flex flex-column gap-3">
+      <section className="mt-4 d-flex flex-column gap-3">
         <div className="d-flex gap-4">
           <Button
             size="large"
@@ -74,9 +115,23 @@ export default function Specifications() {
             اضافه به علاقه مندی ها
           </Button>
           <div className="specifications-amount">
-            <Button type="text" icon={<Plus style={{ fontSize: "18px" }} />} />
-            <span className="fs-4 fw-medium ">{1}</span>
-            <Button type="text" icon={<Minus style={{ fontSize: "18px" }} />} />
+            <Button
+              type="text"
+              icon={<Plus style={{ fontSize: "18px" }} />}
+              onClick={() =>
+                amount + 1 > product.amount
+                  ? setAmount(amount)
+                  : setAmount(amount + 1)
+              }
+            />
+            <span className="fs-4 fw-medium ">{amount}</span>
+            <Button
+              type="text"
+              icon={<Minus style={{ fontSize: "18px" }} />}
+              onClick={() =>
+                amount - 1 ? setAmount(amount - 1) : setAmount(1)
+              }
+            />
           </div>
         </div>
         <Button
@@ -84,23 +139,11 @@ export default function Specifications() {
           size="large"
           block
           className="specifications-addToCard"
+          disabled={product.amount === 0}
         >
-          اضافه به سبد
+          {product.amount === 0 ? "اتمام موجودی" : "اضافه به سبد"}
         </Button>
-      </circle>
-      <Divider />
-      <div className="d-flex flex-wrap gap-2">
-        <small style={{ color: "rgb(0,0,0,.40)" }}>دسته بندی:</small>
-        <strong
-          style={{
-            color: "rgb(0,0,0,.88)",
-            fontWeight: "300",
-            fontSize: "14px",
-          }}
-        >
-          زنانه، بچه گانه، دخترانه، پائیزی
-        </strong>
-      </div>
+      </section>
     </div>
   );
 }

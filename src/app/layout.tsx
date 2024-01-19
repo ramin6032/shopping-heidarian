@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import Providers from "./providers";
+import Navigation from "src/components/navigation/navigation";
 import "./globals.scss";
 import "../../node_modules/vazirmatn/Vazirmatn-font-face.css";
 
@@ -14,7 +16,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fa" dir="rtl">
-      <body>{children}</body>
+      <body>
+        <Providers>
+          <Navigation />
+          {children}
+        </Providers>
+      </body>
     </html>
   );
 }

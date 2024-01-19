@@ -19,6 +19,7 @@ const HomePage: React.FC = () => {
       key={index}
     />
   ));
+
   const newProductsItems = products.newProducts.map((product, index) => (
     <ProductCard
       key={index}
@@ -27,8 +28,10 @@ const HomePage: React.FC = () => {
       price={product.price}
       prevPrice={product.prevPrice}
       label={product.label}
+      animation
     />
   ));
+
   const amazingOfferProductsItems = products.newProducts.map(
     (product, index) => (
       <ProductCard
