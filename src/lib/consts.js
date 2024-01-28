@@ -1,5 +1,7 @@
 export const NumberOfRowsInDesktopMenu = 4; //تعداد ردیف های هر ستون از منو در دسکتاپ
 
+export const tablePageSize = 10;
+
 export const productList = [
   {
     src: "/images/pic4.jpg",

@@ -15,14 +15,15 @@
 @import "../../node_modules/bootstrap/scss/helpers";
 @import "../../node_modules/bootstrap/scss/utilities/api";
 
+@import "../../node_modules/vazirmatn/Vazirmatn-font-face.css";
+
 @import "../assets/css/puffIn";
 @import "../assets/css/puffOut";
 
 @import "../components/amazingOffer/amazingOffer.scss";
 @import "../components/productCard/productCard.scss";
 
-@import "../components/swip/style.scss";
-@import "../components//carousel/style.scss";
+@import "../components/carousel/style.scss";
 
 // @import "../assets/css/media";
 :root {

@@ -16,7 +16,6 @@ const DropDown: React.FC<any> = ({ onMouseLeave, current }) => {
   // const tabs = menu.
 
   const [currentMenu] = menu.filter((item) => item.key === current);
-  console.log("menu", currentMenu);
   currentMenu?.submenu?.forEach((submenu, index) => {
     if (index % NumberOfRows) {
       column.push(submenu);
@@ -25,7 +24,6 @@ const DropDown: React.FC<any> = ({ onMouseLeave, current }) => {
       column.splice(0, column.length);
     }
   });
-  console.log("subMenuColumns", subMenuColumns);
   if (current)
     return (
       <section
@@ -36,7 +34,6 @@ const DropDown: React.FC<any> = ({ onMouseLeave, current }) => {
           <div className="d-flex gx-3">
             {subMenuColumns.map((item, index) => {
               const column = item;
-              console.log("column", column);
               return (
                 <div key={index} className="px-1" style={{ minWidth: "180px" }}>
                   {column.map((submenu) => (

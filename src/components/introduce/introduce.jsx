@@ -8,7 +8,6 @@ import { getProduct } from "src/server/actions";
 
 export default function Introduce({ id }) {
   const { data } = useQuery({ queryKey: ["product"], queryFn: getProduct(id) });
-  console.log("product", data);
   return (
     <>
       {/* <Navigation /> */}

@@ -16,7 +16,13 @@ export async function query(query) {
 
     return result;
   } catch (error) {
-    console.log(error);
+    console.clear();
+    console.log("Error Message:", error.sqlMessage);
+    console.log("sql:", error.sql);
+    if (error.message.includes("Duplicate entry"))
+      throw new Error("خطا: کلید تکراری وارد شده است");
+    if (error.message.includes("Cannot delete or update a parent row"))
+      throw new Error("خطا: به عنوان کلید خارجی در جدول دیگر استفاده شده است");
     throw new Error(error);
   }
 }

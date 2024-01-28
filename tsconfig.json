@@ -29,7 +29,8 @@
     ".next/types/**/*.ts",
     "src/components/countDown/countDown.tsx",
     "src/server/db/db.js",
-    "src/server/actions.ts"
+    "src/server/actions.ts",
+    "src/app/(dashboard)/dashboard/layout.js"
   ],
   "exclude": ["node_modules"]
 }
